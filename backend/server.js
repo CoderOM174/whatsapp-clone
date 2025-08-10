@@ -8,8 +8,19 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
+// Configure CORS
+app.use(cors({
+  origin:  process.env.FRONTEND_URL || '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
+
+// Home route to confirm server is running
+app.get('/', (req, res) => {
+  res.send('Server is running successfully!');
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGO_URI, {
@@ -27,4 +38,4 @@ if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
 }
 
-module.exports = app;  
+module.exports = app;
