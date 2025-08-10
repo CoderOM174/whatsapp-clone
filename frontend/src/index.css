@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+
+body{
+      font-family: "Roboto", sans-serif;
+}
+
+
+:root {
+  --scroll-thumb: rgba(0, 0, 0, 0.3);
+  --scroll-thumb-hover: rgba(0, 0, 0, 0.45);
+  --scroll-track: transparent;
+  --scroll-size: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --scroll-thumb: rgba(255, 255, 255, 0.12);
+    --scroll-thumb-hover: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Apply this to any scrollable element */
+::-webkit-scrollbar {
+  width: var(--scroll-size);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scroll-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 9999px; /* fully rounded */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scroll-thumb-hover);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-thumb) var(--scroll-track);
+}
